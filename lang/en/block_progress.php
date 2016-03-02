@@ -66,6 +66,11 @@ $string['workshop'] = 'Workshop';
 $string['jclic'] = 'JClic';
 $string['geogebra'] = 'Geogebra';
 
+// XTEC AFEGIT Activitats Àgora
+$string['rcontent'] = 'Remote content';
+$string['qv'] = 'QV';
+// FI XTEC
+
 // Actions.
 $string['activity_completion'] = 'activity completion';
 $string['answered'] = 'answered';

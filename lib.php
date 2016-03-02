@@ -890,6 +890,40 @@ function block_progress_monitorable_modules() {
             'defaultAction' => 'graded',
             'showsubmittedfirst' => true,
         ),
+        // XTEC AFEGIT Activitats Àgora
+        'rcontent' => array(
+            'actions' => array(
+                'attempted'    => "SELECT id
+                                     FROM {rcontent_grades}
+                                    WHERE rcontentid = :eventid
+                                      AND userid = :userid",
+                'completed'    => "SELECT id
+                                     FROM {rcontent_grades}
+                                    WHERE rcontentid = :eventid
+                                      AND userid = :userid
+                                      AND {$DB->sql_compare_text('status')} = 'FINALIZADO'",
+            ),
+            'defaultAction' => 'completed'
+        ),
+        'qv' => array(
+            'defaultTime' => 'timedue',
+            'actions' => array(
+                'attempted'    => "SELECT qs.id
+                                     FROM {qv_sections} qs, {qv_assignments} qa
+                                    WHERE qa.qvid = :eventid
+                                      AND qa.userid = :userid
+                                      AND qa.id = qs.assignmentid
+                                      AND qs.state >= 0",
+                'completed'    => "SELECT qs.id
+                                     FROM {qv_sections} qs, {qv_assignments} qa
+                                    WHERE qa.qvid = :eventid
+                                      AND qa.userid = :userid
+                                      AND qa.id = qs.assignmentid
+                                      AND qs.state >= 1",
+            ),
+            'defaultAction' => 'completed'
+        ),
+        // FI XTEC
     );
 }
 
